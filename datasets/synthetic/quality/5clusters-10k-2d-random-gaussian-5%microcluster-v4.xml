@@ -1,0 +1,43 @@
+<!DOCTYPE dataset PUBLIC "GeneratorByModel.dtd" "GeneratorByModel.dtd">
+<dataset random-seed="012" test-model="1">
+	<cluster name="1" size="100">
+		<normal mean="0.5" stddev="0.03"/>
+		<normal mean="1" stddev="0.01"/>
+	</cluster>
+	<cluster name="1" size="100">
+		<normal mean="1.2" stddev="0.01"/>
+		<normal mean="1.0" stddev="0.03"/>
+	</cluster>
+	<cluster name="1" size="100">
+		<normal mean="0.8" stddev="0.03"/>
+		<normal mean="0.5" stddev="0.01"/>
+	</cluster>
+	<cluster name="1" size="100">
+		<normal mean="0.6" stddev="0.01"/>
+		<normal mean="0" stddev="0.03"/>
+	</cluster>
+	<cluster name="1" size="100">
+		<normal mean="0" stddev="0.01"/>
+		<normal mean="0" stddev="0.03"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.08499541" stddev="0.02"/>
+		<normal mean="0.78805964" stddev="0.02"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.21597802" stddev="0.02"/>
+		<normal mean="0.54048727" stddev="0.02"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="-0.08251005" stddev="0.02"/>
+		<normal mean="1.00249641" stddev="0.02"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.98085782" stddev="0.02"/>
+		<normal mean="-0.05989429" stddev="0.02"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="1.0483392" stddev="0.02"/>
+		<normal mean="0.06465119" stddev="0.02"/>
+	</cluster>
+</dataset>

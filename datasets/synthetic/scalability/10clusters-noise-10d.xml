@@ -1,0 +1,144 @@
+<dataset>
+	<cluster name="Noise" size="50000">
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="1" size="95000">
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="2" size="95000">
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.32" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="3" size="95000">
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="4" size="95000">
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="5" size="95000">
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.24" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="6" size="95000">
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.44" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="7" size="95000">
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.64" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="8" size="95000">
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.84" stddev="0.02"/>
+		<normal mean="0.52" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="9" size="95000">
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.8" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="10" size="95000">
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.8" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+</dataset>

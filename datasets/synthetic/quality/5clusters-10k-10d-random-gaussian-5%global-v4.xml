@@ -1,0 +1,75 @@
+<!DOCTYPE dataset PUBLIC "GeneratorByModel.dtd" "GeneratorByModel.dtd">
+<dataset random-seed="012" test-model="1">
+	<cluster name="1" size="500">
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+		<uniform min="-0.2" max="1.2" />
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.08499541" stddev="0.02"/>
+		<normal mean="0.78805964" stddev="0.02"/>
+		<normal mean="0.21597802" stddev="0.024494897"/>
+		<normal mean="0.54048727" stddev="0.028284271"/>
+		<normal mean="-0.08251005" stddev="0.031622777"/>
+		<normal mean="1.00249641" stddev="0.034641016"/>
+		<normal mean="0.98085782" stddev="0.037416574"/>
+		<normal mean="-0.05989429" stddev="0.04"/>
+		<normal mean="1.0483392" stddev="0.042426407"/>
+		<normal mean="0.06465119" stddev="0.04472136"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.24059402" stddev="0.02"/>
+		<normal mean="0.62729982" stddev="0.02"/>
+		<normal mean="1.03307016" stddev="0.024494897"/>
+		<normal mean="0.92328265" stddev="0.028284271"/>
+		<normal mean="-0.09728892" stddev="0.031622777"/>
+		<normal mean="0.52547123" stddev="0.034641016"/>
+		<normal mean="0.56244516" stddev="0.037416574"/>
+		<normal mean="0.4824529" stddev="0.04"/>
+		<normal mean="0.82176098" stddev="0.042426407"/>
+		<normal mean="0.0928601" stddev="0.04472136"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.81747254" stddev="0.02"/>
+		<normal mean="-0.07502824" stddev="0.02"/>
+		<normal mean="0.06225221" stddev="0.024494897"/>
+		<normal mean="0.03952762" stddev="0.028284271"/>
+		<normal mean="0.2718771" stddev="0.031622777"/>
+		<normal mean="0.70574317" stddev="0.034641016"/>
+		<normal mean="0.46547573" stddev="0.037416574"/>
+		<normal mean="0.87940196" stddev="0.04"/>
+		<normal mean="0.24750414" stddev="0.042426407"/>
+		<normal mean="0.77975117" stddev="0.04472136"/>
+	</cluster>
+	<cluster name="0" size="1900">
+        <normal mean="0.74314683" stddev="0.02"/>
+		<normal mean="0.29308337" stddev="0.02"/>
+		<normal mean="0.30157703" stddev="0.024494897"/>
+		<normal mean="1.07366969" stddev="0.028284271"/>
+		<normal mean="0.64949853" stddev="0.031622777"/>
+		<normal mean="1.04037623" stddev="0.034641016"/>
+		<normal mean="0.82097078" stddev="0.037416574"/>
+		<normal mean="0.8900111" stddev="0.04"/>
+		<normal mean="0.38796836" stddev="0.042426407"/>
+		<normal mean="0.44157009" stddev="0.04472136"/>
+	</cluster>
+	<cluster name="0" size="1900">
+        <normal mean="0.38075795" stddev="0.02"/>
+		<normal mean="1.09416579" stddev="0.02"/>
+		<normal mean="0.11307701" stddev="0.024494897"/>
+		<normal mean="1.05511628" stddev="0.028284271"/>
+		<normal mean="0.40310032" stddev="0.031622777"/>
+		<normal mean="0.40886294" stddev="0.034641016"/>
+		<normal mean="0.45577864" stddev="0.037416574"/>
+		<normal mean="0.34846778" stddev="0.04"/>
+		<normal mean="0.45860972" stddev="0.042426407"/>
+		<normal mean="-0.05779809" stddev="0.04472136"/>
+    </cluster>
+</dataset>

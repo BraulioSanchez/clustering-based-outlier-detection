@@ -1,0 +1,40 @@
+<dataset>
+	<cluster name="-1" size="50000">
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="1" size="500000">
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<normal mean="0.3" stddev="0.05"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="2" size="450000">
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<normal mean="0.73" stddev="0.05"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+</dataset>

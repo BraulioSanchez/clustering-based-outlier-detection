@@ -1,0 +1,27 @@
+<!DOCTYPE dataset PUBLIC "GeneratorByModel.dtd" "GeneratorByModel.dtd">
+<dataset random-seed="345" test-model="1">
+	<cluster name="1" size="500">
+		<uniform min="-2.0" max="28" />
+		<uniform min="-6" max="6" />
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="0.0" stddev="0.2"/>
+		<normal mean="0.0" stddev="0.2"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="6.283185307179586" stddev="0.2"/>
+		<normal mean="2.827584538956311" stddev="0.2"/>
+	</cluster>
+	<cluster name="0" size="1900">
+		<normal mean="12.566370614359172" stddev="0.2"/>
+		<normal mean="-2.407853883674342" stddev="0.2"/>
+	</cluster>
+	<cluster name="0" size="1900">
+        <normal mean="18.84955592153876" stddev="0.2"/>
+        <normal mean="-0.777155897390173" stddev="0.2"/>
+	</cluster>
+	<cluster name="0" size="1900">
+        <normal mean="25.132741228718345" stddev="0.2"/>
+        <normal mean="3.0696476585271517" stddev="0.2"/>
+    </cluster>
+</dataset>

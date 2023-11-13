@@ -1,0 +1,31 @@
+<dataset>
+	<cluster name="Noise" size="50000">
+		<uniform min="0.0" max="1.0" />
+		<uniform min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="Cluster1" size="190000">
+		<normal mean="0.43" stddev="0.02"/>
+		<normal mean="0.12" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="Cluster2" size="190000">
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.42" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="Cluster3" size="190000">
+		<normal mean="0.13" stddev="0.02"/>
+		<normal mean="0.72" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="Cluster4" size="190000">
+		<normal mean="0.5" stddev="0.02"/>
+		<normal mean="0.8" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+	<cluster name="Cluster5" size="190000">
+		<normal mean="0.73" stddev="0.02"/>
+		<normal mean="0.8" stddev="0.02"/>
+		<clip min="0.0" max="1.0" />
+	</cluster>
+</dataset>
