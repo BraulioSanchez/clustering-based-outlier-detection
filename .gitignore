@@ -2,12 +2,16 @@ algorithms/binaries_
 analysis
 figures
 results
+/**/literature/
+/**/semantic/
+/**/synthetic/
 # Generic backup files
 /**/*~
 /**/*.bak
 /**/*.sav
 /**/.DS_Store
 /**/.ipynb_checkpoints/
+/**/__pycache__/
 # Eclipse
 /**/.project
 /**/.settings
