@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx10G -jar algorithms/binaries/elki-glosh.jar KDDCLIApplication"
+javaCommand="java -Xmx10G -jar algorithms/binaries/elki.jar KDDCLIApplication"
 algorithm="outlier.clustering.GLOSH"
 
 results="$(pwd)/results"

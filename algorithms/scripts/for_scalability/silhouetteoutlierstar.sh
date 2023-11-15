@@ -46,7 +46,7 @@ _10d() {
 }
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx10G -jar algorithms/binaries/elki-silhouetteoutlier.jar KDDCLIApplication"
+javaCommand="java -Xmx10G -jar algorithms/binaries/elki.jar KDDCLIApplication"
 algorithm="outlier.clustering.SilhouetteOutlierDetection"
 alias="outlier.clustering.SilhouetteOutlierDetectionStar"
 

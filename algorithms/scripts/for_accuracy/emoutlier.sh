@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx30G -jar algorithms/binaries/elki-emoutlier.jar KDDCLIApplication"
+javaCommand="java -Xmx30G -jar algorithms/binaries/elki.jar KDDCLIApplication"
 algorithm="outlier.clustering.EMOutlier"
 
 results="$(pwd)/results"
