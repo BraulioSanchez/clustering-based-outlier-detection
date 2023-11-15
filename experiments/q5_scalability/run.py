@@ -5,174 +5,184 @@ script_dir = os.path.dirname(__file__)
 modules_dir = os.path.join(script_dir, '..')
 sys.path.append(modules_dir)
 
-import datasets_list
-
 from tqdm import tqdm
 
-import pandas as pd
+from math import log
 import numpy as np
-import operator
-from scipy.stats import wilcoxon
-from scipy.stats import friedmanchisquare
+import pandas as pd
+import matplotlib.pyplot as plt
 
-def wilcoxon_holm(alpha=0.05, df_perf=None):
-    """
-    Applies the wilcoxon signed rank test between each pair of algorithm and then use Holm
-    to reject the null's hypothesis
-    """
-    # print(pd.unique(df_perf['classifier_name']))
-    # count the number of tested datasets per classifier
-    df_counts = pd.DataFrame({'count': df_perf.groupby(
-        ['classifier_name']).size()}).reset_index()
-    # get the maximum number of tested datasets
-    max_nb_datasets = df_counts['count'].max()
-    # get the list of classifiers who have been tested on nb_max_datasets
-    classifiers = list(df_counts.loc[df_counts['count'] == max_nb_datasets]
-                       ['classifier_name'])
-    # test the null hypothesis using friedman before doing a post-hoc analysis
-    friedman_p_value = friedmanchisquare(*(
-        np.array(df_perf.loc[df_perf['classifier_name'] == c]['accuracy'])
-        for c in classifiers))[1]
-    if friedman_p_value >= alpha:
-        # then the null hypothesis over the entire classifiers cannot be rejected
-        print('the null hypothesis over the entire classifiers cannot be rejected')
-        exit()
-    # get the number of classifiers
-    m = len(classifiers)
-    # init array that contains the p-values calculated by the Wilcoxon signed rank test
-    p_values = []
-    # loop through the algorithms to compare pairwise
-    for i in range(m - 1):
-        # get the name of classifier one
-        classifier_1 = classifiers[i]
-        # get the performance of classifier one
-        perf_1 = np.array(df_perf.loc[df_perf['classifier_name'] == classifier_1]['accuracy']
-                          , dtype=np.float64)
-        for j in range(i + 1, m):
-            # get the name of the second classifier
-            classifier_2 = classifiers[j]
-            # get the performance of classifier one
-            perf_2 = np.array(df_perf.loc[df_perf['classifier_name'] == classifier_2]
-                              ['accuracy'], dtype=np.float64)
-            # calculate the p_value
-            p_value = wilcoxon(perf_1, perf_2, zero_method='pratt')[1]
-            # appen to the list
-            p_values.append((classifier_1, classifier_2, p_value, False))
-    # get the number of hypothesis
-    k = len(p_values)
-    # sort the list in acsending manner of p-value
-    p_values.sort(key=operator.itemgetter(2))
+def generate_scalability_plots(methods,
+                               path,
+                               datasets,
+                               dimensions = 2,
+                               n_clusters = 2,
+                               ):
+    means = []
 
-    # loop through the hypothesis
-    for i in range(k):
-        # correct alpha with holm
-        new_alpha = float(alpha / (k - i))
-        # test if significant after holm's correction of alpha
-        if p_values[i][2] <= new_alpha:
-            p_values[i] = (p_values[i][0], p_values[i][1], p_values[i][2], True)
-        else:
-            # stop
-            break
-    # compute the average ranks to be returned (useful for drawing the cd diagram)
-    # sort the dataframe of performances
-    sorted_df_perf = df_perf.loc[df_perf['classifier_name'].isin(classifiers)]. \
-        sort_values(['classifier_name', 'dataset_name'])
-    # get the rank data
-    rank_data = np.array(sorted_df_perf['accuracy']).reshape(m, max_nb_datasets)
+    groups = [
+        ['k'], # EMOutlier
+        ['k'], # KMeansOutlierDetection
+        ['k','l'], # KMeansMinusMinusOutlierDetection
+        ['k','l'], # KMeansMinusMinusOutlierDetection*
+        ['k'], # SilhouetteOutlierDetection
+        ['k'], # SilhouetteOutlierDetection*
 
-    # create the data frame containg the accuracies
-    df_ranks = pd.DataFrame(data=rank_data, index=np.sort(classifiers), columns=
-    np.unique(sorted_df_perf['dataset_name']))
+        ['epsilon','minpts','core'], # DBSCANOutlierDetection
+        ['minpts', 'minclsize'], # GLOSH
+        ['minpts'], # OPTICSOF
+        
+        ['epsilon','mu','alpha'], # OutRankS1
+        ['minpts','minclsize','alpha','subspaces'], # OutRankS1HDBSCAN*
+        
+        ['numtrees', 'subsample'], # IsolationForest
+        ['k'], # KNNOutlier
+        ['k'], # LOF
+    ]
 
-    # number of wins
-    dfff = df_ranks.rank(ascending=False)
-    # print(dfff[dfff == 1.0].sum(axis=1))
+    sizes = ['1.56perc','3.13perc','6.25perc','12.5perc']
 
-    # average the ranks
-    average_ranks = df_ranks.rank(ascending=False).mean(axis=1).sort_values(ascending=False)
-    # return the p-values and the average ranks
-    return p_values, average_ranks, max_nb_datasets
+    for method, group in zip(methods, groups):
+        # print(method, group)
+        for dataset in datasets:
+            _means = []
+            for size in sizes:
+                try:
+                    data = pd.read_csv('%s/%s-%s.csv' % (method, dataset, size), comment='#') \
+                    .groupby(group).mean() \
+                    ['runtime'].values / 1000 # convert to seconds
+                    _means.append(np.mean(data))
+                except:
+                    _means.append(np.nan)
+            means.append(np.array(_means))
 
+    #fig, ax = plt.subplots(figsize=(4,4))
+    fig, ax = plt.subplots(figsize=(4, 5))
 
-methods = [
-    'DBSCANOD',
-    'EMOutlier',
-    'GLOSH',
-    'KMeansOD',
-    'KMeans--',
-    'KMeans--*',
-    'OPTICS-OF',
-    'OutRank S1/D',
-    'OutRank S1/H',
-    'SilhouetteOD',
-    'SilhouetteOD*',
-    'iForest',
-    'KNNOutlier',
-    'LOF',
-]
+    sizes = ['12.5%','25%','50%','100%']
+
+    n = 1000000
+    positions = [int(n*.0156),int(n*.0313),int(n*.0625),int(n*.125)]
+
+    colors = [
+        'tab:orange', # EMOutlier
+        'tab:blue', # KMeansOutlierDetection
+        'tab:pink', # KMeansMinusMinusOutlierDetection
+        '#aa8800', # KMeansMinusMinusOutlierDetection*
+        'tab:cyan', # SilhouetteOutlierDetection
+        '#ff0066', # SilhouetteOutlierDetection*
+
+        'tab:red', # DBSCANOutlierDetection
+        'tab:green', # GLOSH
+        'tab:purple', # OPTICSOF
+        
+        'tab:olive', # OutRankS1
+        '#508aa8', #OutRankS1HDBSCAN
+        
+        'darkred', #IsolationForest
+        'chocolate', # KNNOutlier
+        'silver' # LOF
+        ]
+
+    markers = [
+        'o', # EMOutlier
+        'v', # KMeansOutlierDetection
+        '^', # KMeansMinusMinusOutlierDetection
+        '<', # KMeansMinusMinusOutlierDetection*
+        '>', # SilhouetteOutlierDetection
+        '1', # SilhouetteOutlierDetection*
+        
+        '2', # DBSCANOutlierDetection
+        '3', # GLOSH
+        '4', # OPTICSOF
+        
+        's', # OutRankS1
+        'p', #OutRankS1HDBSCAN
+        
+        '*', #IsolationForest
+        '+', # KNNOutlier
+        'x', # LOF
+    ]
+
+    threshold = 18000
+    for i, mean in enumerate(means):
+        mask = mean <= threshold
+        ax.plot(np.log(positions)[mask], mean[mask], marker=markers[i], color=colors[i], fillstyle='none', markersize=8, linewidth=1, linestyle='--')
+
+    xs = np.log(positions[1:3])
+    if dimensions == 2:
+        ys = [3260.3, 13050.5] # for 2D
+    elif dimensions == 10:
+        ys = [5260.3, 21050.5] # for 10D
+    subtitle = '%d Clusters and Outliers' % n_clusters
+    # subtitle = ' '
+    slope = (np.log(ys[1])-np.log(ys[0]))/(xs[1]-xs[0])
+    print(slope)
+    ax.plot(xs, ys, color='gray', linewidth=1.5)
+    ys = [0.137, 0.275]
+    slope = (np.log(ys[1])-np.log(ys[0]))/(xs[1]-xs[0])
+    print(slope)
+    ax.plot(xs, ys, color='gray', linewidth=1.5)
+
+    index = [0,1,2,3]
+    ax.set_xlabel('Sizes (log)', fontsize=14)
+    ax.set_ylabel('Runtime in secs. (log)', fontsize=14)
+    ax.set_yscale('log')
+    ax.set_xticks(np.log(positions)[index])
+    ax.set_xticklabels(np.array(sizes)[index], rotation=0, fontsize=10)
+
+    fig.suptitle(subtitle, fontsize=16, fontweight='bold', y=.98, x=0.56)
+    fig.subplots_adjust(
+        top=0.894,
+        bottom=0.127,
+        left=0.206,
+        right=0.946,
+        hspace=0.2,
+        wspace=0.2
+    )
+    plt.savefig("%s/scalability-%dclusters-%ddim.png" % (path, n_clusters, dimensions), bbox_inches="tight", dpi=300)
+    # plt.show()            
+
 
 algos = [
-    '../outlier.clustering.DBSCANOutlierDetection',
-    '../outlier.clustering.EMOutlier',
-    '../outlier.clustering.GLOSH',
-    '../outlier.clustering.KMeansOutlierDetection',
-    '../outlier.clustering.KMeansMinusMinusOutlierDetection',
-    '../outlier.clustering.KMeansMinusMinusOutlierDetection*',
-    '../outlier.OPTICSOF',
-    '../outlier.subspace.OutRankS1',
-    '../outlier.subspace.OutRankS1HDBSCAN',
-    '../outlier.clustering.SilhouetteOutlierDetection',
-    '../outlier.clustering.SilhouetteOutlierDetection*',
-    '../outlier.density.IsolationForest',
-    '../outlier.distance.KNNOutlier',
-    '../outlier.lof.LOF',
+    'results/outlier.clustering.EMOutlier',
+    'results/outlier.clustering.KMeansOutlierDetection',
+    'results/outlier.clustering.KMeansMinusMinusOutlierDetection',
+    'results/outlier.clustering.KMeansMinusMinusOutlierDetectionStar',
+    'results/outlier.clustering.SilhouetteOutlierDetection',
+    'results/outlier.clustering.SilhouetteOutlierDetectionStar',
+    
+    'results/outlier.clustering.DBSCANOutlierDetection',
+    'results/outlier.clustering.GLOSH',
+    'results/outlier.OPTICSOF',
+
+    'results/outlier.subspace.OutRankS1_D',
+    'results/outlier.subspace.OutRankS1_H',
+    
+    'results/outlier.density.IsolationForest',
+    'results/outlier.distance.KNNOutlier',
+    'results/outlier.lof.LOF'
 ]
 
-_methods = []
+methods = []
 for algo in algos:
-    _methods.append('%s/Accuracy' % algo)
+    methods.append('%s/Scalability' % algo)
 
 datasets = [
-    # 'ALOI',
-    # 'Glass',
-    # 'Ionosphere',
-    # 'KDDCup99',
-    # 'Lymphography',
-    # 'PenDigits',
-    # 'Shuttle',
-    # 'Waveform',
-    # 'WBC',
-    # 'WDBC',
-    # 'WPBC',
+    ['2clusters-noise-2d', 2, 2],
+    ['5clusters-noise-2d', 2, 5],
+    ['10clusters-noise-2d', 2, 10],
 
-    # 'Annthyroid',
-    # 'Arrhythmia',
-    # 'Cardiotocography',
-    # 'HeartDisease',
-    # 'Hepatitis',
-    # 'InternetAds',
-    # 'PageBlocks',
-    # 'Parkinson',
-    # 'Pima',
-    # 'SpamBase',
-    # 'Stamps',
-    # 'Wilt',
-    
-    '2clusters-10k-2d-random-gaussian-5%global',
-    '5clusters-1k-2d-random-gaussian-5%global',
-    '5clusters-10k-2d-grid-gaussian-5%global',
-    '5clusters-10k-2d-random-gaussian-1%global',
-    '5clusters-10k-2d-random-gaussian-5%global', # standard
-    '5clusters-10k-2d-random-gaussian-5%local',
-    '5clusters-10k-2d-random-gaussian-5%microcluster',
-    '5clusters-10k-2d-random-gaussian-10%global',
-    '5clusters-10k-2d-random-uniform-5%global',
-    '5clusters-10k-2d-sine-gaussian-5%global',
-    '5clusters-10k-5d-random-gaussian-5%global',
-    '5clusters-10k-10d-random-gaussian-5%global',
-    '5clusters-10k-12d2irr-random-gaussian-5%global',
-    '5clusters-10k-15d5irr-random-gaussian-5%global',
-    '5clusters-10k-20d10irr-random-gaussian-5%global',
-    '5clusters-50k-2d-random-gaussian-5%global',
-    '10clusters-10k-2d-random-gaussian-5%global',
+    ['2clusters-noise-10d', 10, 2],
+    ['5clusters-noise-10d', 10, 5],
+    ['10clusters-noise-10d', 10, 10],
 ]
+
+for dataset, dimension, n_clusters in tqdm(datasets):
+    generate_scalability_plots(
+        methods=methods,
+        path="experiments/q5_scalability",
+        datasets=[dataset],
+        dimensions=dimension,
+        n_clusters=n_clusters
+    )

@@ -223,7 +223,7 @@ datasets = [
     ]
 cmd = 'mkdir -p experiments/q1_accuracy/literature'
 os.system(cmd)
-for aggregation in ("max", "mean"):
+for aggregation in tqdm(("max", "mean")):
     for i in range(4):
         generate_cdd(_methods, datasets, path="experiments/q1_accuracy/literature",
                     index_base_column=i, aggregation=aggregation)
@@ -244,7 +244,7 @@ datasets = [
     ]
 cmd = 'mkdir -p experiments/q1_accuracy/semantic'
 os.system(cmd)
-for aggregation in ("max", "mean"):
+for aggregation in tqdm(("max", "mean")):
     for i in range(4):
         generate_cdd(_methods, datasets, path="experiments/q1_accuracy/semantic",
                     index_base_column=i, aggregation=aggregation)
@@ -270,7 +270,7 @@ datasets = [
 ]
 cmd = 'mkdir -p experiments/q1_accuracy/synthetic'
 os.system(cmd)
-for aggregation in ("max", "mean"):
+for aggregation in tqdm(("max", "mean")):
     for i in range(4):
         generate_cdd(_methods, datasets, path="experiments/q1_accuracy/synthetic",
                     index_base_column=i, aggregation=aggregation)

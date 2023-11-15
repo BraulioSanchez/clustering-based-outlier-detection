@@ -156,23 +156,23 @@ def generate_plot_all_evaluation_measures(methods,
 
 
 algos = [
-    'outlier.clustering.EMOutlier',
-    'outlier.clustering.KMeansOutlierDetection',
-    'outlier.clustering.KMeansMinusMinusOutlierDetection',
-    'outlier.clustering.KMeansMinusMinusOutlierDetectionStar',
-    'outlier.clustering.SilhouetteOutlierDetection',
-    'outlier.clustering.SilhouetteOutlierDetectionStar',
+    'results/outlier.clustering.EMOutlier',
+    'results/outlier.clustering.KMeansOutlierDetection',
+    'results/outlier.clustering.KMeansMinusMinusOutlierDetection',
+    'results/outlier.clustering.KMeansMinusMinusOutlierDetectionStar',
+    'results/outlier.clustering.SilhouetteOutlierDetection',
+    'results/outlier.clustering.SilhouetteOutlierDetectionStar',
 
-    'outlier.clustering.DBSCANOutlierDetection',
-    'outlier.clustering.GLOSH',
-    'outlier.OPTICSOF',
+    'results/outlier.clustering.DBSCANOutlierDetection',
+    'results/outlier.clustering.GLOSH',
+    'results/outlier.OPTICSOF',
     
-    'outlier.subspace.OutRankS1_D',
-    'outlier.subspace.OutRankS1_H',
+    'results/outlier.subspace.OutRankS1_D',
+    'results/outlier.subspace.OutRankS1_H',
 
-    'outlier.density.IsolationForest',
-    'outlier.distance.KNNOutlier',
-    'outlier.lof.LOF',
+    'results/outlier.density.IsolationForest',
+    'results/outlier.distance.KNNOutlier',
+    'results/outlier.lof.LOF',
 ]
 
 methods = []
@@ -194,6 +194,13 @@ datasets = [
 ]
 cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/literature'
 os.system(cmd)
+for i in tqdm(range(4)):
+    generate_plot_all_evaluation_measures(
+        methods=methods,
+        datasets=datasets,
+        path='experiments/q2_resilience_to_data_variation/literature',
+        index_base_column=i
+    )
 
 datasets = [
     'Annthyroid',
@@ -211,6 +218,13 @@ datasets = [
 ]
 cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/semantic'
 os.system(cmd)
+for i in tqdm(range(4)):
+    generate_plot_all_evaluation_measures(
+        methods=methods,
+        datasets=datasets,
+        path='experiments/q2_resilience_to_data_variation/semantic',
+        index_base_column=i
+    )
     
 datasets = [
     '2clusters-10k-2d-random-gaussian-5%global',
@@ -233,3 +247,10 @@ datasets = [
 ]
 cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/synthetic'
 os.system(cmd)
+for i in tqdm(range(4)):
+    generate_plot_all_evaluation_measures(
+        methods=methods,
+        datasets=datasets,
+        path='experiments/q2_resilience_to_data_variation/synthetic',
+        index_base_column=i
+    )
