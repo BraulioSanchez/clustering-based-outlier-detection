@@ -12,15 +12,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def generate_plot_all_evaluation_measures(methods,
-                                          datasets,
-                                          path,
-                                          index_base_column = 0,
-                                          with_labels = True):
-    columns = ['AUROC', 'Average Precision', 'R-Precision', 'Max-F1']
+def process_results(aggregation = "max", index_base_column = 0):
     base_columns = ['auroc', 'adj-avgprec',\
         'adj-rprec', 'adj-f1']
     # index_base_column = 0
+
+    # aggregation = "max"
+    # aggregation = "mean"
 
     groups = [
         ['k'], # EMOutlier
@@ -49,17 +47,21 @@ def generate_plot_all_evaluation_measures(methods,
         for dataset in datasets:
             input = "%s/%s.csv" % (method, dataset)
             try:
-                data = pd.read_csv(input, comment='#')
-                data = data \
-                .groupby(group).agg("mean") \
-                [base_columns]
-                values += data[base_columns[index_base_column]].values.tolist()
+                data = pd.read_csv(input, comment='#') \
+                    .groupby(group).agg("mean") \
+                    .agg(aggregation) \
+                    [base_columns]       
+                values.append(data[base_columns[index_base_column]])
             except:
                 print("...", input)
         measures.append(values)
 
-    # with_labels = True
+    return measures
 
+def plot(measures, path,
+        with_labels=True, index_base_column = 0):
+    columns = ['AUROC', 'Average Precision', 'R-Precision', 'Max-F1']
+    # with_labels = True
     if not with_labels:
         fig, ax = plt.subplots(figsize=(6,3.35))
         # fig, ax = plt.subplots(figsize=(6,3.5))
@@ -150,10 +152,12 @@ def generate_plot_all_evaluation_measures(methods,
             'weight': 'normal',
             'size': 20,
             }
+
     plt.tight_layout()
     plt.title('%s' % columns[index_base_column], fontdict=font)
-    plt.savefig("%s/resilience-%s-%s.png" % (path, str(columns[index_base_column])), bbox_inches="tight", dpi=300)
+    plt.savefig("%s/resilience-%s.png" % (path, str(columns[index_base_column])), bbox_inches="tight", dpi=300)
 
+path = 'q2_resilience_to_data_variation'
 
 algos = [
     'results/outlier.clustering.EMOutlier',
@@ -192,15 +196,19 @@ datasets = [
     'WDBC',
     'WPBC'
 ]
-cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/literature'
-os.system(cmd)
-for i in tqdm(range(4)):
-    generate_plot_all_evaluation_measures(
-        methods=methods,
-        datasets=datasets,
-        path='experiments/q2_resilience_to_data_variation/literature',
-        index_base_column=i
-    )
+for aggregation in tqdm(["max", "mean"]):
+    cmd = 'mkdir -p experiments/%s/literature/%s' % (path, aggregation)
+    os.system(cmd)
+    for i in range(4):
+        measures = process_results(
+            aggregation=aggregation,
+            index_base_column=i,
+        )
+        plot(
+           measures=measures,
+           path='experiments/%s/literature/%s' % (path, aggregation),
+           index_base_column=i
+        )
 
 datasets = [
     'Annthyroid',
@@ -216,15 +224,19 @@ datasets = [
     'Stamps',
     'Wilt'
 ]
-cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/semantic'
-os.system(cmd)
-for i in tqdm(range(4)):
-    generate_plot_all_evaluation_measures(
-        methods=methods,
-        datasets=datasets,
-        path='experiments/q2_resilience_to_data_variation/semantic',
-        index_base_column=i
-    )
+for aggregation in tqdm(["max", "mean"]):
+    cmd = 'mkdir -p experiments/%s/semantic/%s' % (path, aggregation)
+    os.system(cmd)
+    for i in range(4):
+        measures = process_results(
+            aggregation=aggregation,
+            index_base_column=i,
+        )
+        plot(
+           measures=measures,
+           path='experiments/%s/semantic/%s' % (path, aggregation),
+           index_base_column=i
+        )
     
 datasets = [
     '2clusters-10k-2d-random-gaussian-5%global',
@@ -245,12 +257,19 @@ datasets = [
     '5clusters-50k-2d-random-gaussian-5%global',
     '10clusters-10k-2d-random-gaussian-5%global',
 ]
-cmd = 'mkdir -p experiments/q2_resilience_to_data_variation/synthetic'
+
+cmd = 'mkdir -p experiments/%s/synthetic' % path
 os.system(cmd)
-for i in tqdm(range(4)):
-    generate_plot_all_evaluation_measures(
-        methods=methods,
-        datasets=datasets,
-        path='experiments/q2_resilience_to_data_variation/synthetic',
-        index_base_column=i
-    )
+for aggregation in tqdm(["max", "mean"]):
+    cmd = 'mkdir -p experiments/%s/synthetic/%s' % (path, aggregation)
+    os.system(cmd)
+    for i in range(4):
+        measures = process_results(
+            aggregation=aggregation,
+            index_base_column=i,
+        )
+        plot(
+           measures=measures,
+           path='experiments/%s/synthetic/%s' % (path, aggregation),
+           index_base_column=i
+        )
