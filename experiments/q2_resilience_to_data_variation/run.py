@@ -257,9 +257,6 @@ datasets = [
     '5clusters-50k-2d-random-gaussian-5%global',
     '10clusters-10k-2d-random-gaussian-5%global',
 ]
-
-cmd = 'mkdir -p experiments/%s/synthetic' % path
-os.system(cmd)
 for aggregation in tqdm(["max", "mean"]):
     cmd = 'mkdir -p experiments/%s/synthetic/%s' % (path, aggregation)
     os.system(cmd)
