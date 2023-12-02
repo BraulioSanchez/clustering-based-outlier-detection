@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx10G -jar algorithms/binaries/elki.jar KDDCLIApplication"
+javaCommand="java -Xmx10G -jar algorithms/binaries/elki-0.8.0.jar KDDCLIApplication"
 algorithm="outlier.clustering.SilhouetteOutlierDetection"
 alias="outlier.clustering.SilhouetteOutlierDetectionStar"
 

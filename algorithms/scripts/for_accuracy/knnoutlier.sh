@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx30G -jar algorithms/binaries/elki.jar KDDCLIApplication"
+javaCommand="java -Xmx30G -jar algorithms/binaries/elki-0.8.0.jar KDDCLIApplication"
 algorithm="outlier.distance.KNNOutlier"
 
 results="$(pwd)/results"
