@@ -5,10 +5,6 @@ script_dir = os.path.dirname(__file__)
 modules_dir = os.path.join(script_dir, '..')
 sys.path.append(modules_dir)
 
-import datasets_list
-
-import pandas as pd
-import numpy as np
 from tqdm import tqdm
 
 methods_for_accuracy = [
@@ -27,21 +23,22 @@ methods_for_accuracy = [
     ["KNNOutlier", "knnoutlier", "algorithms/scripts/for_accuracy/knnoutlier.sh"],
     ["LOF", "lof", "algorithms/scripts/for_accuracy/lof.sh"],
 ]
-for _, _, script in tqdm(methods_for_accuracy):
-    cmd = "sh %s" % script
-    # os.system(cmd)
+for _, _, script in tqdm(methods_for_accuracy, desc="Runs for accuracy results"):
+    for option in ["-l", "-s", "syn"]:
+        cmd = "sh %s %s" % (script, option)
+        os.system(cmd)
 print("Runs for accuracy results concluded!")
 
-
 methods_for_parameter_selection = [
-    ["DBSCAN", "dbscan", "algorithms/scripts/for_parameter_selection/hysortod.sh"],
-    ["DBSCANOD", "dbscanod", "algorithms/scripts/for_parameter_selection/hysortod.sh"],
+    ["DBSCAN", "dbscan", "algorithms/scripts/for_parameter_selection/dbscan.sh"],
+    ["DBSCANOD", "dbscanod", "algorithms/scripts/for_parameter_selection/dbscanod.sh"],
     ["KMeans", "hamerlykmeans", "algorithms/scripts/for_parameter_selection/hamerlykmeans.sh"],
     ["SilhouetteOD", "silhouetteoutlier", "algorithms/scripts/for_parameter_selection/silhouetteoutlier.sh"],
 ]
-for _, _, script in tqdm(methods_for_accuracy):
-    cmd = "sh %s" % script
-    # os.system(cmd)
+for _, _, script in tqdm(methods_for_parameter_selection, desc="Runs for parameter selection results"):
+    for option in ["-l", "-s"]:
+        cmd = "sh %s %s" % (script, option)
+        os.system(cmd)
 print("Runs for parameter selection results concluded!")
 
 methods_for_scalability = [
@@ -60,7 +57,8 @@ methods_for_scalability = [
     ["KNNOutlier", "knnoutlier", "algorithms/scripts/for_scalability/knnoutlier.sh"],
     ["LOF", "lof", "algorithms/scripts/for_scalability/lof.sh"],
 ]
-for _, _, script in tqdm(methods_for_accuracy):
-    cmd = "sh %s" % script
-    # os.system(cmd)
+for _, _, script in tqdm(methods_for_accuracy, desc="Runs for scalability results"):
+    for option in ["-2", "-10"]:
+        cmd = "sh %s %s" % (script, option)
+        os.system(cmd)
 print("Runs for scalability results concluded!")

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #$((1 + RANDOM % 2147483647))
-javaCommand="java -Xmx10G -jar algorithms/binaries/elki-outranks1_h.jar KDDCLIApplication"
+javaCommand="java -Xmx30G -jar algorithms/binaries/elki-outranks1_h.jar KDDCLIApplication"
 algorithm="outlier.subspace.OutRankS1HDBSCAN"
 alias="outlier.subspace.OutRankS1_H"
 
