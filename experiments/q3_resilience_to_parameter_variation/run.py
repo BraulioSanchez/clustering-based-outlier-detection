@@ -299,7 +299,7 @@ def plot_(means, stddevs, markers, path,
     plt.title('%s' % columns[index_base_column], fontdict=font)
     plt.savefig("%s/overall_view-%s-%s.png" % (path, str(columns[index_base_column]), difficulty), bbox_inches="tight", dpi=300)
 
-path = 'q3_resilience_to_parameter_variation'    
+path = 'q3_resilience_to_parameter_variation'
 
 algos = [
     'results/outlier.clustering.EMOutlier',
