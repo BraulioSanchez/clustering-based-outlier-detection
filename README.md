@@ -1,23 +1,17 @@
 # A Comparative Evaluation of Clustering-based Outlier Detection
 
-by
-Braulio V. Sánchez Vinces, Erich Schubert, Arthur Zimek, and Robson L. F. Cordeiro
-
 # To Cite
-    @INPROCEEDINGS{ClusteringOutlier2024,
+    @INPROCEEDINGS{ClusteringBasedOD2025,
       author={Braulio V. Sánchez Vinces, Erich Schubert, Arthur Zimek, and Robson L. F. Cordeiro},
-      title={A Comparative Evaluation of Clustering-based Outlier Detection}, 
-      year={2024}
+      title={A Comparative Evaluation of Clustering-based Outlier Detection},
+      journal={Data mining and knowledge discovery},
+      year={2025},
+      publisher={Springer}
     }
 
 # Abstract
 
-> In this paper, we perform an extensive experimental evaluation of clustering-based outlier detection methods.
-To our knowledge, our work is the first effort to analytically and empirically study the advantages and disadvantages of clustering-based outlier detection techniques.
-Our main goal is to evaluate whether or not clustering-based techniques can compete in efficiency and effectiveness against some of the most studied state-of-the-art algorithms in the literature.
-To this end, we consider the quality of the results, the resilience against different types of data, the resilience against variations in parameter configuration, the ability of handling large datasets in a reasonable time, and the ability to filter out inappropriate parameter values automatically based on internal measures of clustering quality.
-We study $11$ clustering-based outlier detectors and $3$ non-clustering-based detectors using a consistent parameterization heuristic to evaluate the behavior of the methods with different configurations.
-We also study $46$ real and synthetic datasets with different characteristics, e.g., datasets with up to $125,000$ points or $1,555$ dimensions, aiming to achieve plausibility with the broadest possible diversity of real-world use cases in anomaly detection.
+> We perform an extensive experimental evaluation of clustering-based outlier detection methods. These methods offer benefits such as efficiency, the possibility to capitalize on more mature evaluation measures, more developed subspace analysis for high-dimensional data and better explainability, and yet they have so-far been neglected in literature. To our knowledge, our work is the first effort to analytically and empirically study their advantages and disadvantages. Our main goal is to evaluate whether or not clustering-based techniques can compete in efficiency and effectiveness against the most studied state-of-the-art algorithms in the literature. We consider the quality of the results, the resilience against different types of data and variations in parameter configuration, the scalability, and the ability to filter out inappropriate parameter values automatically based on internal measures of clustering quality. It has been recently shown that several classic, simple, unsupervised methods surpass many deep learning approaches and, hence, remain at the state-of-the-art of outlier detection. We therefore study $14$ of the best classic unsupervised methods, in particular $11$ clustering-based methods and $3$ non-clustering-based ones, using a consistent parameterization heuristic to identify the pros and cons of each approach. We consider $46$ real and synthetic datasets with up to $125$k points and $1.5$k dimensions aiming to achieve plausibility with the broadest possible diversity of real-world use cases. Our results indicate that the clustering-based methods are on par with (if not surpass) the non-clustering-based ones, and we argue that clustering-based methods like KMeans-- should be included as baselines in future benchmarking studies, as they often offer a competitive quality at a relatively low run time, besides several other benefits.
 
 # Main Sections
 1. [Directory Tree]
