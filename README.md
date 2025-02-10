@@ -1,10 +1,13 @@
 # A Comparative Evaluation of Clustering-based Outlier Detection
 
 # To Cite
-    @INPROCEEDINGS{ClusteringBasedOD2025,
+    @article{ClusteringBasedOD2025,
       author={Braulio V. Sánchez Vinces, Erich Schubert, Arthur Zimek, and Robson L. F. Cordeiro},
-      title={A Comparative Evaluation of Clustering-based Outlier Detection},
-      journal={Data mining and knowledge discovery},
+      title={A comparative evaluation of clustering-based outlier detection},
+      journal={Data Mining and Knowledge Discovery},
+      volume={39},
+      number={2},
+      pages={13},
       year={2025},
       publisher={Springer}
     }
