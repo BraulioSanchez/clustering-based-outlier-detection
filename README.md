@@ -7,7 +7,7 @@
       journal={Data Mining and Knowledge Discovery},
       volume={39},
       number={2},
-      pages={13},
+      pages={13:1–55},
       year={2025},
       publisher={Springer}
     }
